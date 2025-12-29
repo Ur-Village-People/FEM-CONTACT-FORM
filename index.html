@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
 
     <link
       rel="icon"
@@ -11,53 +10,79 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
 
     <title>Frontend Mentor | Contact form</title>
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   </head>
   <body>
-    <header class="header container">
-      <h1 class="header__title">Contact Us</h1>
-    </header>
     <main class="container">
-      <form action="#" method="post">
+      <header class="header">
+        <h1 class="header__title">Contact Us</h1>
+      </header>
+      <form>
         <fieldset class="form">
           <legend class="visually-hidden">Contact Us</legend>
+
           <div class="form__name-container">
+            <div id="success-toast" class="success-toast" aria-hidden="true">
+              <div class="success-toast__header">
+                <img src="./assets/images/icon-success-check.svg" alt="" />
+                <h2>Message Sent!</h2>
+              </div>
+              <p>Thanks for completing the form. We'll be in touch soon!</p>
+            </div>
             <div class="form__name">
-              <label for="first-name" class="form__label">First Name</label>
+              <label for="first-name" class="form__label required"
+                >First Name</label
+              >
               <input
                 type="text"
                 id="first-name"
                 name="first-name"
                 class="form__name-input"
+                required
               />
+              <span class="error-text">This field is required</span>
             </div>
-            <div>
-              <label for="last-name" class="form__label">Last Name</label>
+            <div class="form__name">
+              <label for="last-name" class="form__label required"
+                >Last Name</label
+              >
               <input
                 type="text"
                 id="last-name"
                 name="last-name"
                 class="form__name-input"
+                required
               />
+              <span class="error-text">This field is required</span>
             </div>
           </div>
-          <div>
-            <label for="email" class="form__label">Email Address</label>
+
+          <div class="form__email-name">
+            <label for="email" class="form__label required"
+              >Email Address</label
+            >
             <input
               type="email"
               id="email"
               name="email"
               class="form__email-input"
+              required
             />
+            <span class="error-text">This field is required</span>
           </div>
-          <fieldset>
-            <legend class="form__label">Query Type</legend>
-            <div>
+
+          <fieldset class="form__query-container">
+            <legend class="form__query-label required">Query Type</legend>
+            <div class="form__query-name">
               <label for="general-enquiry" class="form__query-title"
                 >General Enquiry</label
               >
@@ -67,9 +92,10 @@
                 name="query-type"
                 value="general"
                 class="form__query-type"
+                required
               />
             </div>
-            <div>
+            <div class="form__query-name">
               <label for="support-request" class="form__query-title"
                 >Support Request</label
               >
@@ -79,18 +105,24 @@
                 name="query-type"
                 value="support"
                 class="form__query-type"
+                required
               />
             </div>
+            <span class="error-text">This field is required</span>
           </fieldset>
-          <div>
-            <label for="message" class="form__label">Message</label>
+
+          <div class="form__message-name">
+            <label for="message" class="form__label required">Message</label>
             <textarea
               id="message"
               name="message"
               class="form__textarea"
+              required
             ></textarea>
+            <span class="error-text">This field is required</span>
           </div>
-          <div>
+
+          <div class="form__consent-name">
             <label for="consent" class="form__consent-label"
               >I consent to being contacted by the team</label
             >
@@ -99,18 +131,14 @@
               id="consent"
               name="consent"
               class="form__checkbox"
+              required
             />
+            <span class="error-text">This field is required</span>
           </div>
+
           <button type="submit" class="form__submit-btn">Submit</button>
         </fieldset>
       </form>
     </main>
-    <footer>
-      <div class="attribution">
-        Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
-      </div>
-    </footer>
   </body>
 </html>

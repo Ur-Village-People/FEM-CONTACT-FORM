@@ -1,0 +1,10 @@
+@use '../util/' as *;
+.container {
+    max-width: to-rem(730);
+    padding: to-rem(24);
+    background-color: var(--white);
+    border-radius: to-rem(16);
+    @include breakpoint(medium) {
+        padding: to-rem(40);
+    }
+}

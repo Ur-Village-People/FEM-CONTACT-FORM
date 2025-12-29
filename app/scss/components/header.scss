@@ -1,1 +1,18 @@
+// @use '../util/' as *;
+// .header {
+//     &__title {
+//         font-size: to-rem(32);
+//     }
+// }
 @use '../util/' as *;
+
+.header {
+    margin-bottom: to-rem(32); // ADDED: Previous value was missing; now creates space between "Contact Us" and the form.
+    
+    &__title {
+        font-size: to-rem(32); // KEPT: Correctly matches the 2x label ratio.
+        font-weight: 700; // ADDED: Previous value was default; now matches bold heading in design.
+        color: var(--green-900); // ADDED: Previous value was default; now uses your neutral slate color.
+        letter-spacing: to-rem(-1); // ADDED: Matches tighter typography in design.
+    }
+}
