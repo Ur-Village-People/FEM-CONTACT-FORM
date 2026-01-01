@@ -203,27 +203,36 @@ body {
   font-size: 1.125rem;
   cursor: pointer;
 }
-.form {
-  /* --- Revised Error Logic in form.scss --- */
-}
-.form .error-text {
+
+/* ===== ERROR STYLES ===== */
+/* These must be separate from the .form class above */
+.error-text {
   display: none;
   color: var(--red);
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
-.form .error .error-text {
+
+.form__name.error .error-text,
+.form__email-name.error .error-text,
+.form__query-container.error .error-text,
+.form__message-name.error .error-text,
+.form__consent-name.error .error-text {
   display: block;
 }
-.form .error input[type=text],
-.form .error input[type=email],
-.form .error textarea {
+
+.form__name.error .form__name-input,
+.form__email-name.error .form__email-input,
+.form__message-name.error .form__textarea {
   border-color: var(--red);
 }
-.form .error .form__query-name {
+
+.form__query-container.error .form__query-name {
   border-color: var(--red);
 }
-.form .success-toast {
+
+/* ===== SUCCESS TOAST ===== */
+.success-toast {
   position: fixed;
   top: 1.25rem;
   left: 50%;
@@ -234,7 +243,24 @@ body {
   border-radius: 0.75rem;
   transition: transform 0.4s ease;
   z-index: 100;
+  width: 90%;
+  max-width: 31.25rem;
 }
-.form .success-toast.show {
+@media (min-width: 47.5em) {
+  .success-toast {
+    top: 2.5rem;
+  }
+}
+.success-toast.show {
   transform: translateX(-50%) translateY(0);
+}
+.success-toast__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.success-toast__header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
 }/*# sourceMappingURL=style.css.map */

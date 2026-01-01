@@ -1,35 +1,42 @@
 @use '../util/' as *;
+
 .form {
   border: none;
   display: flex;
   flex-direction: column;
   gap: to-rem(24);
+  
   &__name-container {
     display: flex;
     flex-direction: column;
     gap: to-rem(16);
+    
     @include breakpoint(medium) {
       flex-direction: row;
       gap: to-rem(16);
     }
   }
+  
   &__name {
     display: flex;
     flex-direction: column;
     gap: to-rem(8);
     flex: 1;
   }
+  
   &__label {
     font-size: to-rem(16);
     font-weight: 400;
     color: var(--green-900);
     display: inline-block;
   }
+  
   .required::after {
     content: ' *';
     color: var(--green-600);
     margin-left: to-rem(4);
   }
+  
   &__name-input,
   &__email-input,
   &__textarea {
@@ -40,32 +47,38 @@
     font-size: to-rem(18);
     font-family: inherit;
     outline: none;
+    
     &:focus,
     &:hover {
       border-color: var(--green-600);
     }
   }
+  
   &__email-name {
     display: flex;
     flex-direction: column;
     gap: to-rem(8);
   }
+  
   &__query-container {
     display: flex;
     flex-direction: column;
     gap: to-rem(16);
     border: none;
+    
     @include breakpoint(medium) {
       flex-direction: row;
       gap: to-rem(16);
     }
   }
+  
   &__query-label {
     font-size: to-rem(16);
     font-weight: 400;
     color: var(--green-900);
     margin-bottom: to-rem(16);
   }
+  
   &__query-name {
     display: flex;
     flex-direction: row-reverse;
@@ -77,29 +90,32 @@
     padding: to-rem(12) to-rem(24);
     flex: 1;
     cursor: pointer;
-    // @include breakpoint(medium) {
-    //   gap: to-rem(16);
-    // }
+    
     &:hover {
       background-color: var(--green-200);
     }
   }
+  
   &__query-title, &__query-type {
     font-weight: 400;
     cursor: pointer;
   }
+  
   &__message-name {
     display: flex;
     flex-direction: column;
     gap: to-rem(8);
   }
+  
   &__textarea {
     min-height: to-rem(105);
     resize: vertical;
+    
     @include breakpoint-down(small) {
       min-height: to-rem(240);
     }
   }
+  
   &__consent-name {
     display: flex;
     flex-direction: row-reverse;
@@ -107,15 +123,20 @@
     gap: to-rem(12);
     align-items: center;
     margin-bottom: to-rem(16);
+    
     @include breakpoint(medium) {
       gap: to-rem(16);
     }
   }
+  
   &__consent-label {
     font-size: to-rem(16);
   }
+  
   &__checkbox {
+    // checkbox styles
   }
+  
   &__submit-btn {
     border: none;
     background-color: var(--green-600);
@@ -126,14 +147,12 @@
     font-size: to-rem(18);
     cursor: pointer;
   }
-/* --- Revised Error Logic in form.scss --- */
-&__name,
-&__email-name,
-&__query-container,
-&__message-name,
-&__consent-name {
-  // Hide error text by default
 }
+
+/* ===== ERROR STYLES ===== */
+/* These must be separate from the .form class above */
+
+// Hide all error text by default
 .error-text {
   display: none;
   color: var(--red);
@@ -141,25 +160,29 @@
   margin-top: to-rem(4);
 }
 
-// When the parent container has the 'error' class
-.error {
-  .error-text {
-    display: block; // Show the text
-  }
-  
-  // Turn borders red for text inputs and textareas
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    border-color: var(--red);
-  }
-
-  // Specifically turn borders red for the radio button wrappers
-  .form__query-name {
-    border-color: var(--red);
-  }
+// Show error text when parent has .error class
+.form__name.error .error-text,
+.form__email-name.error .error-text,
+.form__query-container.error .error-text,
+.form__message-name.error .error-text,
+.form__consent-name.error .error-text {
+  display: block;
 }
-  .success-toast {
+
+// Red borders for text inputs in error state
+.form__name.error .form__name-input,
+.form__email-name.error .form__email-input,
+.form__message-name.error .form__textarea {
+  border-color: var(--red);
+}
+
+// Red borders for radio button containers in error state
+.form__query-container.error .form__query-name {
+  border-color: var(--red);
+}
+
+/* ===== SUCCESS TOAST ===== */
+.success-toast {
   position: fixed;
   top: to-rem(20);
   left: 50%;
@@ -170,6 +193,26 @@
   border-radius: to-rem(12);
   transition: transform 0.4s ease;
   z-index: 100;
-  &.show { transform: translateX(-50%) translateY(0); }
-}
+  width: 90%;
+  max-width: to-rem(500);
+  
+  @include breakpoint(medium) {
+    top: to-rem(40);
+  }
+  
+  &.show { 
+    transform: translateX(-50%) translateY(0); 
+  }
+  
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: to-rem(12);
+    margin-bottom: to-rem(12);
+    
+    h2 {
+      font-size: to-rem(20);
+      font-weight: 700;
+    }
+  }
 }
